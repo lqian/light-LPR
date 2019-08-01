@@ -304,7 +304,7 @@ MLPDR::MLPDR(const string& proto_model_dir,
 	trans.setScale(1.0f, 1.0f);
 	ImageProcess::Config lpr_config;
 	lpr_config.filterType = NEAREST;
-	const float mean_vals[3] = { 168.887, 119.724, 79.5555 };
+	const float mean_vals[3] = { 168.887, 119.724, 78.9492 };
 	const float norm_vals[3] = { 1.0f, 1.0f, 1.0f };
 	::memcpy(lpr_config.mean, mean_vals, sizeof(mean_vals));
 	::memcpy(lpr_config.normal, norm_vals, sizeof(norm_vals));
@@ -622,7 +622,7 @@ void MLPDR::recognizePlateNos(const cv::Mat & img, std::vector<string> & plateNo
 
 std::vector<std::vector<int>> MLPDR::recognize(const cv::Mat & img) {
 	vector<vector<int>> all_codes = {	};
-	vector<FaceInfo> faceInfos = Detect(img, 120, 3);
+	vector<FaceInfo> faceInfos = Detect(img, 80, 3);
 	for (auto faceInfo: faceInfos) {
 		vector<int> codes = {};
 		cv::Point2f srcPoints[4];
