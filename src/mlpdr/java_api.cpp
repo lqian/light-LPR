@@ -53,11 +53,9 @@ API_EXPORTS int recogSingleJson(char * res, int contentType, char ** output) {
 		return -1;
 	}
 
-	vector<string> plateNos;
-	ptr_mlpdr->recognizePlateNos(img, plateNos);
-	if (plateNos.size() == 0) return 0;
-	string plateNo = plateNos[0];  //only return 0 for highest confidence plate
-	cout << plateNo << ":" <<  plateNo.length()<< endl;
+	vector<PlateInfo> plateInfos = ptr_mlpdr->recognize(img);
+	if (plateInfos.size() == 0) return 0;
+	string plateNo = plateInfos[0].plateNo;  //only return 0 for highest confidence plate
 	int len = plateNo.length();
 	*output = (char *) calloc(len, sizeof(char));
 	memcpy(*output, plateNo.c_str(), len);

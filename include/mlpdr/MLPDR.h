@@ -27,11 +27,13 @@ typedef struct FaceBox {
 	float ymax;
 	float score;
 } FaceBox;
-typedef struct FaceInfo {
+typedef struct PlateInfo {
 	float bbox_reg[4];
 	float landmark_reg[8];
 	float landmark[8];
 	FaceBox bbox;
+	string plateNo;
+	string plateColor;
 } FaceInfo;
 
 class MLPDR {
@@ -39,17 +41,19 @@ public:
 	MLPDR(const string& proto_model_dir, float threhold_p = 0.7f,
 			float threhold_r = 0.8f, float threhold_o = 0.8f, float factor =
 					0.709f);
-	void recognizePlateNos(const cv::Mat & img, std::vector<std::string> & plateNos);
-	std::vector<std::vector<int>> recognize(const cv::Mat & img);
-	std::vector<FaceInfo> Detect(const cv::Mat& img, const int min_face = 64,
+	std::vector<PlateInfo> recognize(const cv::Mat & img);
+	std::vector<PlateInfo> Detect(const cv::Mat& img, const int min_face = 64,
 			const int stage = 3);
-	vector<FaceInfo> detect(unsigned char * inputImage, int height, int width, const int min_face=64, const int stagee=3);
-	std::vector<FaceInfo> Detect_MaxFace(const cv::Mat& img,
+	vector<PlateInfo> detect(unsigned char * inputImage, int height, int width, const int min_face=64, const int stagee=3);
+	std::vector<PlateInfo> Detect_MaxFace(const cv::Mat& img,
 			const int min_face = 64, const int stage = 3);
 
 	virtual ~MLPDR();
 private:
 	int threads_num = 2;
+
+	vector<string> plateColorDict;
+	void decodePlateInfos(const cv::Mat & img, vector<PlateInfo> & plateInfos);
 };
 
 } /* namespace mlpdr */
