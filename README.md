@@ -1,6 +1,15 @@
 # ---- 2019-08-13 支持黄牌识别的模型和车牌颜色识别的模型放出 ------
 Light-LPR是一个瞄准可以在嵌入式设备、手机端和普通的x86平台上运行的车牌识别开源项目，旨在支持各种场景的车牌识别,车牌字符识别准确率超99.95%，综合识别准确率超过99%，支持目前国内所有的车牌识别，觉得好用的一定要加星哦。200星公布黄牌识别模型，400星公布新能源车牌模型。 
 技术上采用MTCNN检测车牌和四个角点精确定位，并进行偏斜纠正，最后进行端到端识别车牌号码，使用MNN作为推理引擎。具有结构简单，灵活部署的特点，适应各类计算平台。
+部分识别效果展示
+![images/1.jpg](images/1.jpg)
+![images/000001.jpg](images/000001.jpg)
+![images/5080e34da5dd1c2f.jpg](images/5080e34da5dd1c2f.jpg)
+![images/666.jpg](images/666.jpg)
+![images/6661.jpg](images/6661.jpg)
+![images/mmexport1566183579726.jpg](images/mmexport1566183579726.jpg)
+![images/plate.jpg](images/plate.jpg) 
+![images/3](images/3.jpg)
 
 # 支持的车牌
 
@@ -70,5 +79,5 @@ make
 - [MNN MTCNN CPU OPENCL](https://github.com/liushuan/MNN-MTCNN-CPU-OPENCL)
 
 # 其他
-- 技术交流、数据交流和捐赠请联系作者或加QQ群，图像处理分析机器视觉 109128646[已满], light-LPR群号：813505078, 作者微信
-- [![](https://raw.githubusercontent.com/lqian/light-LPR/master/109128646.png)](https://raw.githubusercontent.com/lqian/light-LPR/master/109128646.png) [![](https://raw.githubusercontent.com/lqian/light-LPR/master/light-LPR.png)](https://raw.githubusercontent.com/lqian/light-LPR/master/light-LPR.png) [![](https://raw.githubusercontent.com/lqian/light-LPR/master/contact.jpg)](https://raw.githubusercontent.com/lqian/light-LPR/master/contact.jpg)
+- 技术交流、数据交流和捐赠请联系作者或加QQ群，图像处理分析机器视觉 109128646[已满], light-LPR群号：813505078
+- ![](109128646.png) ![](light-LPR.png)] ![](contact.jpg)
