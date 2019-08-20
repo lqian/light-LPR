@@ -8,7 +8,12 @@ Light-LPR是一个瞄准可以在嵌入式设备、手机端和普通的x86平�
 ![images/666.jpg](images/666.jpg)
 ![images/6661.jpg](images/6661.jpg)
 ![images/mmexport1566183579726.jpg](images/mmexport1566183579726.jpg)
+<<<<<<< HEAD
 ![images/plate.png](images/plate.png)
+=======
+![images/plate.jpg](images/plate.jpg) 
+![images/3](images/3.jpg)
+>>>>>>> 885fa9f619991e279ba504adc3859d5a455a72ff
 
 # 支持的车牌
 
