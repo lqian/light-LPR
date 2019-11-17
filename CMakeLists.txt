@@ -2,8 +2,8 @@ cmake_minimum_required(VERSION 3.0.0)
 
 project(mnn-lpdr  C CXX)
 
-set(_MAIJOR_VERION 0)
-set(_MINOR_VERION 1)
+set(_MAIJOR_VERION 1)
+set(_MINOR_VERION 0)
 set(_PATCH_VERION 0)
 
 # c++11 required

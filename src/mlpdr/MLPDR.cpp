@@ -20,7 +20,7 @@ using namespace MNN;
 using namespace MNN::CV;
 using namespace cv;
 
-std::shared_ptr<Interpreter> LPRRNet_ = NULL;
+std::shared_ptr<Interpreter> LPRNet = NULL;
 Session * ocr_session = nullptr;
 Tensor * ocr_input = nullptr;
 Tensor * ocr_output = nullptr;
@@ -68,7 +68,7 @@ static float factor = 0.709f;
 
 //pnet config
 static const float pnet_stride = 2;
-static const float pnet_cell_size_width = 30;
+static const float pnet_cell_size_width = 24;
 static const float pnet_cell_size_height = 12;
 static const int pnet_max_detect_num = 5000;
 //mean & std
@@ -175,8 +175,8 @@ static void BBoxRegression(vector<PlateInfo>& bboxes) {
 		float h = bbox.ymax - bbox.ymin + 1;
 		bbox.xmin += bbox_reg[0] * w;
 		bbox.ymin += bbox_reg[1] * h;
-		bbox.xmax = bbox.xmin +  bbox_reg[2] * w;
-		bbox.ymax = bbox.ymin + bbox_reg[3] * h;
+		bbox.xmax += bbox_reg[2] * w;
+		bbox.ymax += bbox_reg[3] * h;
 
 		//		bbox.xmax += bbox_reg[2] * w;
 		//		bbox.ymax += bbox_reg[3] * h;
@@ -219,14 +219,16 @@ static void GenerateBBox(float * prob1_confidence, float *reg_box,
 	for (int h=0; h<feature_map_h_; h++) {
 		for (int w=0; w < feature_map_w_; w++, prob1_confidence++) {
 			if (* prob1_confidence > thresh) {
+				cout <<*prob1_confidence << endl;
 				PlateInfo faceInfo;
 				FaceBox & bbox = faceInfo.bbox;
 				bbox.score = *prob1_confidence;
-				bbox.xmin = w * pnet_stride / scale;
+				bbox.xmin = w * pnet_stride * 4 / scale;
 				bbox.ymin = h * pnet_stride / scale;
 				bbox.xmax = ( w * pnet_stride + pnet_cell_size_width + 1 - 1.f) / scale;
 				bbox.ymax = ( h * pnet_stride + pnet_cell_size_height + 1 - 1.f) / scale;
 
+				// NxCxHxW format
 				int index = h * feature_map_w_ + w;
 				faceInfo.bbox_reg[0] = reg_box[index];
 				faceInfo.bbox_reg[1] = reg_box[index + spatical_size];
@@ -297,15 +299,15 @@ MLPDR::MLPDR(const string& proto_model_dir,
 
 	o_input = ONet_->getSessionInput(sess_o, NULL);
 	o_out_pro = ONet_->getSessionOutput(sess_o, "prob1");
-	o_out_reg = ONet_->getSessionOutput(sess_o, "conv6-2");
-	o_out_lank = ONet_->getSessionOutput(sess_o, "conv6-3");
+	o_out_reg = ONet_->getSessionOutput(sess_o, "conv6i-2");
+	o_out_lank = ONet_->getSessionOutput(sess_o, "conv6i-3");
 
-	LPRRNet_ =  shared_ptr<Interpreter>( Interpreter::createFromFile((proto_model_dir + "/lpr.mnn").c_str()));
-	ocr_session = LPRRNet_->createSession(config);
-	ocr_input = LPRRNet_->getSessionInput(ocr_session, NULL);
-	ocr_output = LPRRNet_->getSessionOutput(ocr_session, NULL);
-	LPRRNet_->resizeTensor(ocr_input, ocr_input->shape());
-	LPRRNet_->resizeSession(ocr_session);
+	LPRNet =  shared_ptr<Interpreter>( Interpreter::createFromFile((proto_model_dir + "/lpr.mnn").c_str()));
+	ocr_session = LPRNet->createSession(config);
+	ocr_input = LPRNet->getSessionInput(ocr_session, NULL);
+	ocr_output = LPRNet->getSessionOutput(ocr_session, NULL);
+	LPRNet->resizeTensor(ocr_input, ocr_input->shape());
+	LPRNet->resizeSession(ocr_session);
 
 	Matrix lpr_trans;
 	lpr_trans.setScale(1.0f, 1.0f);
@@ -350,7 +352,7 @@ MLPDR::~MLPDR() {
 	PNet_->releaseModel();
 	RNet_->releaseModel();
 	ONet_->releaseModel();
-	LPRRNet_->releaseModel();
+	LPRNet->releaseModel();
 }
 
 uint8_t* get_img(cv::Mat img) {
@@ -392,7 +394,7 @@ std::string decode_plateNo(const vector<int> & codes) {
 	return plateNo;
 }
 
-void MLPDR::decodePlateInfos(const cv::Mat & img, vector<PlateInfo> & plateInfos) {
+void MLPDR::recognize_plate_infos(const cv::Mat & img, vector<PlateInfo> & plateInfos) {
 	for (auto & faceInfo: plateInfos) {
 		vector<int> codes = {};
 		cv::Point2f srcPoints[4];
@@ -419,7 +421,7 @@ void MLPDR::decodePlateInfos(const cv::Mat & img, vector<PlateInfo> & plateInfos
 
 		uint8_t *pImg = get_img(plate);
 		lpr_pretreat_data->convert(pImg, plate.cols, plate.rows,  0, ocr_input);
-		LPRRNet_->runSession(ocr_session);
+		LPRNet->runSession(ocr_session);
 		ctc_decode(ocr_output, codes);
 		faceInfo.plateNo = decode_plateNo(codes);
 		delete pImg;
@@ -451,6 +453,7 @@ void fillInput(const std::vector<int> & dim, const cv::Mat & sample, Tensor*  in
 	auto inputHost = std::shared_ptr<MNN::Tensor>(MNN::Tensor::create<float>({1, hs, ws, 3}));
 	cv::Mat resized;
 	if (sample.cols != ws || sample.rows != hs) {
+		MNN_PRINT("resize to %d x %d \n", hs, ws);
 		cv::resize(sample, resized, cv::Size(ws, hs), 0, 0, cv::INTER_NEAREST);
 	}
 	else {
@@ -488,6 +491,7 @@ static vector<PlateInfo> ProposalNet(unsigned char * inputImage, int height, int
 		int hs = (int) std::ceil(height * scales[i]);
 		std::vector<int> inputDims = { 1, 3, hs, ws };
 		PNet_->resizeTensor(p_input, inputDims);
+
 		PNet_->resizeSession(sess_p);
 
 		MNN::CV::Matrix trans;
@@ -534,8 +538,8 @@ static vector<PlateInfo> ProposalNet(const cv::Mat& sample, int minSize,
 		float threshold, float factor) {
 	int width = sample.cols;
 	int height = sample.rows;
-	float scale = 12.0f / minSize;
-	float minWH = std::min(height, width) * scale;
+	float scale = factor;
+	float minWH = std::min(height, width) * factor;
 	std::vector<float> scales;
 	while (minWH >= 30) {
 		scales.push_back(scale);
@@ -547,13 +551,12 @@ static vector<PlateInfo> ProposalNet(const cv::Mat& sample, int minSize,
 	for (int i = 0; i < scales.size(); i++) {
 		int ws = (int) std::ceil(width * scales[i]);
 		int hs = (int) std::ceil(height * scales[i]);
-		std::vector<int> inputDims = { 1, 3, hs, ws };
+		std::vector<int> inputDims = { 1, 3, hs,  ws };
 		PNet_->resizeTensor(p_input, inputDims);
 		PNet_->resizeSession(sess_p);
-
 		fillInput(inputDims, sample, p_input);
 		PNet_->runSession(sess_p);
-
+		MNN_PRINT("input tensor shape: %d %d %d %d\n", p_input->batch(), p_input->channel(), p_input->height(), p_input->width());
 
 		Tensor prob_host(p_out_pro, p_out_pro->getDimensionType());
 		Tensor reg_host(p_out_reg, p_out_reg->getDimensionType());
@@ -561,11 +564,9 @@ static vector<PlateInfo> ProposalNet(const cv::Mat& sample, int minSize,
 		p_out_reg->copyToHostTensor(&reg_host);
 		auto * prob1_confidence = prob_host.host<float>() +  prob_host.stride(1);
 		auto * reg = reg_host.host<float>();
-
-
 		int feature_w = p_out_pro->width();
 		int feature_h = p_out_pro->height();
-
+		MNN_PRINT("output tensor shape: %d %d %d %d \n", p_out_reg->batch(), p_out_reg->channel(),  p_out_reg->height(), p_out_reg->width());
 		GenerateBBox(prob1_confidence, reg, feature_w, feature_h, scales[i], threshold);
 		std::vector<PlateInfo> bboxes_nms = NMS(candidate_boxes_, 0.5f, 'u');
 		if (bboxes_nms.size() > 0) {
@@ -596,7 +597,10 @@ static std::vector<PlateInfo> NextStage(const cv::Mat& sample,
 			FaceBox & box = pre_stage_res[n].bbox;
 			cv::Rect rect(cv::Point((int) box.xmin, (int) box.ymin),
 					cv::Point((int) box.xmax, (int) box.ymax));
+			cout << "regression bbox: " << rect << endl;
 			cv::Mat roi(sample, rect);
+			imshow("rnet sample", roi);
+			waitKey(0);
 			fillInput(inputDims, roi, r_input);
 			RNet_->runSession(sess_r);
 
@@ -604,7 +608,7 @@ static std::vector<PlateInfo> NextStage(const cv::Mat& sample,
 			Tensor r_out_reg_host(r_out_reg, r_out_reg->getDimensionType());
 			r_out_pro->copyToHostTensor(&r_out_pro_host);
 			r_out_reg->copyToHostTensor(&r_out_reg_host);
-
+			MNN_PRINT("rnet run session and on copy to host\n");
 			auto confidence = r_out_pro_host.host<float>() + r_out_pro_host.stride(1);
 			auto reg_box = r_out_reg_host.host<float>();
 
@@ -698,8 +702,8 @@ vector<PlateInfo> MLPDR::detect(unsigned char * inputImage, int height, int widt
 }
 
 std::vector<PlateInfo> MLPDR::recognize(const cv::Mat & img) {
-	vector<PlateInfo> faceInfos = Detect(img, 80, 3);
-	 decodePlateInfos(img,  faceInfos);
+	vector<PlateInfo> faceInfos = Detect(img, 40, 3);
+	 recognize_plate_infos(img,  faceInfos);
 	return faceInfos;
 }
 vector<PlateInfo> MLPDR::Detect(const cv::Mat & image, int min_face,
@@ -713,19 +717,20 @@ vector<PlateInfo> MLPDR::Detect(const cv::Mat & image, int min_face,
 
 	if (stage >= 1) {
 		pnet_res = ProposalNet(sample, min_face, threhold_p, factor);
+		MNN_PRINT("done ProposalNet with %d proposal \n", pnet_res.size());
 	}
 
 	if (stage >= 2 && pnet_res.size() > 0) {
 		if (pnet_max_detect_num < (int) pnet_res.size()) {
 			pnet_res.resize(pnet_max_detect_num);
 		}
-		rnet_res = NextStage(sample, pnet_res, 60, 24, 2, threhold_r);
+		rnet_res = NextStage(sample, pnet_res, 48, 24, 2, threhold_r);
 		rnet_res = NMS(rnet_res, iou_threhold, 'u');
 		BBoxRegression(rnet_res);
 		BBoxPadSquare(rnet_res, image.cols, image.rows);
 	}
 	if (stage >= 3 && rnet_res.size() > 0) {
-		onet_res = NextStage(sample, rnet_res, 120, 48, 3, threhold_o);
+		onet_res = NextStage(sample, rnet_res, 96, 48, 3, threhold_o);
 		BBoxRegression(onet_res);
 		onet_res = NMS(onet_res, iou_threhold, 'm');
 		BBoxPad(onet_res, image.cols, image.rows);
@@ -766,7 +771,7 @@ std::vector<PlateInfo> MLPDR::Detect_MaxFace(const cv::Mat& img,
 	float scale = 12.0f / min_face;
 	float minWH = std::min(height, width) * scale;
 	std::vector<float> scales;
-	while (minWH >= 12) {
+	while (minWH >= 24) {
 		scales.push_back(scale);
 		minWH *= factor;
 		scale *= factor;
@@ -810,7 +815,7 @@ std::vector<PlateInfo> MLPDR::Detect_MaxFace(const cv::Mat& img,
 		BBoxPadSquare(pnet_res, width, height);
 
 		bboxes_nms.clear();
-		bboxes_nms = NextStage(img, pnet_res, 24, 60, 2, threhold_r);
+		bboxes_nms = NextStage(img, pnet_res, 48, 24, 2, threhold_r);
 		bboxes_nms = NMS(bboxes_nms, iou_threhold, 'u');
 		//nmsTwoBoxs(bboxes_nms, rnet_res, 0.5)
 		if (bboxes_nms.size() > 0) {
@@ -823,7 +828,7 @@ std::vector<PlateInfo> MLPDR::Detect_MaxFace(const cv::Mat& img,
 		BBoxRegression(rnet_res);
 		BBoxPadSquare(rnet_res, img.cols, img.rows);
 
-		onet_res = NextStage(img, rnet_res, 48, 120, 3, threhold_r);
+		onet_res = NextStage(img, rnet_res, 96, 48, 3, threhold_r);
 
 		BBoxRegression(onet_res);
 		onet_res = NMS(onet_res, iou_threhold, 'm');
