@@ -53,7 +53,7 @@ private:
 	int threads_num = 2;
 
 	vector<string> plateColorDict;
-	void decodePlateInfos(const cv::Mat & img, vector<PlateInfo> & plateInfos);
+	void recognize_plate_infos(const cv::Mat & img, vector<PlateInfo> & plateInfos);
 };
 
 } /* namespace mlpdr */
