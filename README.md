@@ -1,73 +1,103 @@
-Light-LPR是一个瞄准可以在嵌入式设备、手机端和普通的x86平台上运行的车牌识别开源项目，旨在支持各种场景的车牌识别,车牌字符识别准确率超99.95%，综合识别准确率超过99%，支持目前国内所有的车牌识别，觉得好用的一定要加星哦。200星公布黄牌识别模型，400星公布新能源车牌模型。 
+
+Light-LPR是一个瞄准可以在嵌入式设备、手机端和普通的x86平台上运行的车牌识别开源项目，旨在支持各种场景的车牌识别,车牌字符识别准确率超99.95%，综合识别准确率超过99%，支持目前国内所有的车牌识别，觉得好用的一定要加星哦。 
 技术上采用MTCNN检测车牌和四个角点精确定位，并进行偏斜纠正，最后进行端到端识别车牌号码，使用MNN作为推理引擎。具有结构简单，灵活部署的特点，适应各类计算平台。
+# Change Log 
+- 2020-01 한국 번호판 인식 지원
+- 2019-12 支持台湾车牌识别
+- 2019-11 开源Windows x86编译方法，提供Opencv-3.4.2 Windows预编译包
+- 2019-08 开源支持黄牌识别的模型和车牌颜色识别模型
+- 2019-07 开源支持中华人民共和国境内蓝色车牌识别模型
 
-# 支持的车牌
+# 비즈니스 에디션 지원 한국 번호판 인식
+| 번호판 유형 | 2004년 이전 | 2006공식 | 2013공식 | 2019공식 |
+| --------: | :-----: | :----: |  :----: | :----: |
+|전용차|E|Y|Y|E|
+|승합차|E|Y|Y|-|
+|특수차 (긴급자동차)|E|Y|Y|E|
+|특수차|E|Y|Y|-|
+|렌트카|E|Y|Y|-|
+| 군용|-|Y|Y|E|
 
-| 车牌 | 检测 | 识别 |
-| --------: | :-----: | :----: |
-| 蓝   |  Y |  Y |
-| 黄   |  Y |  Y |
-| 新能源   |  E |  Y |
-| 大型新能源   |  E |  Y |
-| 教练车牌   |  E |  Y |
-| 警牌   |  Y |  Y |
-| 军牌   |  E |  Y |
-| 双层军牌   |  - |  Y |
-| 武警车牌   |  E |  Y |
-| 双层武警牌照   |  - |  Y |
-| 双层黄牌| - | Y |
-| 港澳通行牌 | - | E | 
-| 应急车牌 | - | E |
-| 民航车牌 | - | E |
-| 普通黑牌 | - | E |
-| 使、领馆车牌 | - | E |
-| 摩托车牌 | - | E |
-| 低速农用车牌 | - | E |
-| 临牌 | - | E |
 
-备注： Y 支持，- 未知, E有限度支持
+비고： Y 지원，- 지원되지 않거나 사용할 수 없음，E 평가 단계에서
+
+# 商业版支持的中华人民共和国台湾车牌
+| 车牌种类 | ７代(1992式) | 8代1版(2012式) | 8代2版(2014式) |
+| --------: | :-----: | :----: |  :----: |
+| 自用小客車/自用小貨車 |  Y |  Y | Y |
+| 自用大客車 |  Y |  Y | Y |
+| 自用大貨車 |  Y |  Y | Y |
+| 身心障礙者專用車 |  Y |  Y | Y |
+| 營業小客車 |  Y |  Y | Y |
+| 營業小貨車 |  - |  E | Y |
+| 營業大客車	 |  Y |  E | Y |
+| 營業大貨車 |  Y |  E | Y |
+| 營業大貨車 |  Y |  E | Y |
+| 營業大貨車 |  Y |  E | Y |
+| 營業貨櫃曳引車 |  Y |  E | Y |
+| 	租賃小客車/租賃小貨車	 |  Y |  E | Y |
+| 交通車	 |  Y |  E | Y |
+| 自用拖車	 |  - |  Y | Y |
+| 營業拖車		 |  - |  Y | Y |
+| 電動自用小客車/電動自用小貨車 |  Y |  Y | Y |
+| 電動營業小客車 |  Y |  Y | Y |
+| 電動身心障礙者專用車 |  - |  Y | Y |
+| 電動營業大客車 |  Y |  Y | Y |
+| 大型重型機車 I |  - |  Y | Y |
+| 大型重型機車 II |  - |  Y | Y |
+| 普通重型機車 | E |  Y | Y |
+| 普通輕型機車 | E |  Y | Y |
+| 小型輕型機車 | E |  Y | Y |
+| 電動大型重型機車 I | - |  - | Y |
+| 電動大型重型機車 II | - |  - | Y |
+| 電動普通重型機車 | - |  - | Y |
+| 電動普通重型機車 | - |  - | Y |
+| 電動小型輕型機車 | - |  - | Y |
+
+备注： Y 支持，- 不支持或者无此车牌种类，E 处于评估阶段
+
+# 支持的中华人民共和国大陆车牌
+
+| 车牌种类 | 开源版 | 专业版 | 完全版 |
+| --------: | :-----: | :----: |  :----: |
+| 蓝   |  Y |  Y | Y |
+| 黄   |  Y |  Y | Y |
+| 新能源   |  - |  Y | Y |
+| 大型新能源   |  - |  Y | Y |
+| 教练车牌   |  - |  Y | Y |
+| 双层黄牌| - | Y | Y |
+| 摩托车牌 | - | Y | Y |
+| 警牌   |  - |  - | Y|
+| 军牌   |  - |  - | Y|
+| 双层军牌   |  - |  - |Y |
+| 武警车牌   |  - |  - | Y|
+| 双层武警牌照   |  - |  - | Y|
+| 港澳通行牌 | - | - | Y | 
+| 普通黑牌 | - | - | Y |
+| 应急车牌 | - | - | E |
+| 民航车牌 | - | - | E |
+| 使、领馆车牌 | - | - | E |
+| 临牌 | - | - | E |
+| 低速农用车牌 | - | - | - |
+
+备注： Y 支持，- 不支持，E 处于评估阶段
+
+# 识别效果展示请参考images目录中的文件 
 
 # 1080P图片识别基准性能
 
-| 平台      | CPU型号    |  内存  | 平均识别时间(ms)  |
-| :-------- | :-----    | :----:  | ----:  |
-| X86  | i5-8265   |  -    | 451 |
-| ARM  | A53       | 1G    | 1532|
+| 平台      | CPU型号    |  内存  | 开源版平均识别时间(ms)   | 专业和完全版平均识别时间(ms) |
+| :-------- | :-----    | :----:  | ----:  | ----:  |
+| X86  | i5-8265   |  8G    | 451 | <50  |
+| ARM  | A53       | 1G    | 1532| <160 |
+| Huwei P20 pro| ... | 4G | - |  <100 |
+| 3519A100 | ... |  | - |  <12 (AI算力支持) |
+| 3516CV500 | ... |  | - |  <35 (AI算力支持) |
 
-#安装依赖
-cmake >= 3.10.0
-opencv >= 3.0.0
-openmp
+# License
+LGPL
 
-# x86平台Linux安装指令
-<pre>
-git clone https://github.com/lqian/light-LPR
-cd light-LPR && mkdir build && cd build
-cmake ../
-make
-</pre>
-
-# ARM平台Linux安装指令
-<pre>
-git clone https://github.com/lqian/light-LPR
-cd light-LPR && mkdir build && cd build
-cmake ../ -DLIGHT_LPR_ARCH=arm
-make
-</pre>
-
-# 运行测试
-`./examples/demo ../models/ [/path/to/a/image]`
-本项目在Fedora 29，Ubuntu 18.04 mate for ARM平台测试通过
-
-# 未来优化
-目前使用车牌的检测使用了[License-Plate-Detect-Recognition-via-Deep-Neural-Networks-accuracy-up-to-99.9](https://github.com/zhubenfu/License-Plate-Detect-Recognition-via-Deep-Neural-Networks-accuracy-up-to-99.9)项目的MTCNN模型，在实际场景中误检测率比较高，抗干扰能力不强，检测耗时长。后期考虑采用MSSD或者YOLOV3等 one stage 的检测算法先检测出车牌，再进行偏斜纠正的方案，提高检测模块的性能。
-
-# 参考和引用
-- [Alibaba MNN](https://github.com/alibaba/MNN)
-- [License-Plate-Detect-Recognition-via-Deep-Neural-Networks-accuracy-up-to-99.9](https://github.com/zhubenfu/License-Plate-Detect-Recognition-via-Deep-Neural-Networks-accuracy-up-to-99.9)
-- [Caffe_OCR](https://github.com/senlinuc/caffe_ocr)
-- [MNN MTCNN CPU OPENCL](https://github.com/liushuan/MNN-MTCNN-CPU-OPENCL)
-
+# 安装方法请参考项目文件 install.md
 # 其他
-- 技术交流、数据交流和捐赠请联系作者或加QQ群，图像处理分析机器视觉 109128646[已满], light-LPR群号：813505078, 作者微信
-- [![](https://raw.githubusercontent.com/lqian/light-LPR/master/109128646.png)](https://raw.githubusercontent.com/lqian/light-LPR/master/109128646.png) [![](https://raw.githubusercontent.com/lqian/light-LPR/master/light-LPR.png)](https://raw.githubusercontent.com/lqian/light-LPR/master/light-LPR.png) [![](https://raw.githubusercontent.com/lqian/light-LPR/master/contact.jpg)](https://raw.githubusercontent.com/lqian/light-LPR/master/contact.jpg)
+- 技术交流、数据交流和捐赠请联系作者或加QQ群，图像处理分析机器视觉 109128646[已满], light-LPR群号：813505078
+- ![](109128646.png) ![](light-LPR.png)
