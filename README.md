@@ -1,6 +1,8 @@
 
 Light-LPR is an open source project aimed at license plate recognition that can run on embedded devices, mobile phones, and x86 platforms. It aims to support license plate recognition in various scenarios. The accuracy rate of license plate character recognition exceeds 99.95%, and the comprehensive recognition accuracy rate exceeds 99%. The project supports multi-lingual and multi-country license plates.
 
+ [ English ](en.md) | [ 中文 ](cn-zh.md) | [ 中文繁体 ](cn-tw.md)| [ 한국어 ](kr.md) 
+
 Light-LPR是一个瞄准可以在嵌入式设备、手机端和x86平台上运行的车牌识别开源项目，旨在支持各种场景的车牌识别,车牌字符识别准确率超99.95%，综合识别准确率超过99%，支持多国家多语言的车牌识别。
 
 Light-LPRは、埋め込みデバイス、携帯電話、x86プラットフォームで実行できるナンバープレート認識を目的としたオープンソースプロジェクトです。さまざまなシナリオでナンバープレート認識をサポートすることを目的としています。ナンバープレート文字認識の精度は99.95％を超え、包括的な認識精度は99％を超えます。 多国間および多言語のナンバープレート認識をサポートします。
@@ -17,9 +19,7 @@ Light-LPR은 임베디드 장치, 휴대폰 및 x86 플랫폼에서 실행할 �
 - เราหวังว่าจะทำงานร่วมกับคุณเพื่อพัฒนาการจดจำป้ายทะเบียน
 - हम लाइसेंस प्लेट मान्यता विकसित करने के लिए आपके साथ काम करने के लिए तत्पर हैं
 
- [ English ](en.md) | [ 中文 ](cn-zh.md) | [ 中文繁体 ](cn-tw.md)| [ 한국어 ](kr.md) 
-
-# Change Log 
+## Change Log 
 - 2020-04 2019 스타일 번호판, 1973 스타일 번호판, 1996 스타일 번호판에 대한 완벽한 지원
 - 2020-04 LightLPR apk支持 android 5,6,7,8,9,10
 - 2020-01 한국 번호판 인식 지원
@@ -28,7 +28,7 @@ Light-LPR은 임베디드 장치, 휴대폰 및 x86 플랫폼에서 실행할 �
 - 2019-08 开源支持黄牌识别的模型和车牌颜色识别模型
 - 2019-07 开源支持中华人民共和国境内蓝色车牌识别模型
 
-# License plate recognization benchmark for 1080P image
+## License plate recognization benchmark for 1080P image
 
 |       | CPU     |  Memory  | average cost of community version (ms)   |  average cost of Commercial version(ms) |
 | :-------- | :-----    | :----:  | ----:  | ----:  |
@@ -38,16 +38,16 @@ Light-LPR은 임베디드 장치, 휴대폰 및 x86 플랫폼에서 실행할 �
 | 3519A100 | ... |  | - |  < 16 (NPU support) |
 | 3516CV500 | ... |  | - | < 45 (NPU support) |
 
-# API supported programming Language
+## API supported programming Language
 - C/C++
 - C#
 - JAVA
 
-# License
+## License
 LGPL
 
-# Please refer to the project file for the installation method !()[install_en.md]
-# Others
+## Please refer to the project file for the installation method [install_en.md](install_en.md)
+## Others
 - Email： link.com@yeah.net, Phone: +86 18010870244,  Skype: +86 18010870244
 - For technical communication, data exchanges and donations, please contact the author or join QQ group, light-LPR group number: 813505078, Image Processing Analysis Machine Vision gropu number, 109128646.
 - ![](light-LPR.png) ![](109128646.png) 

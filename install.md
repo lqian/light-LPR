@@ -1,9 +1,9 @@
-#安装依赖
+## 安装依赖
 cmake >= 3.10.0
 opencv >= 3.0.0
 openmp
 
-# x86平台Linux安装指令
+## x86平台Linux安装指令
 <pre>
 git clone https://github.com/lqian/light-LPR
 cd light-LPR && mkdir build && cd build
@@ -11,7 +11,7 @@ cmake ../
 make
 </pre>
 
-# ARM平台Linux安装指令
+## ARM平台Linux安装指令
 <pre>
 git clone https://github.com/lqian/light-LPR
 cd light-LPR && mkdir build && cd build
@@ -19,7 +19,7 @@ cmake ../ -DLIGHT_LPR_ARCH=arm
 make
 </pre>
 
-# Windows平台上安装指令
+## Windows平台上安装指令
 - 下载cmake 3.10以上版本并安装
 - 首先下载Visual Studio 2017或者 Native Builder Tool for Visual Studio 2017，安装c++编译工具
 - 如果编译64位系统，下载64位[opencv-3.4.2-install-win64.zip](https://pan.baidu.com/s/1CtabojjfEK-bK_XwfG9HTA), 32位系统则下载[opencv-3.4.2-install-win32.zip](https://pan.baidu.com/s/1E7zhRsrrpc9JEhB_6gpehg)，解压到任意目录
@@ -42,12 +42,12 @@ make
 > nmake
 </pre>
 
-# 运行测试
+## 运行测试
 `./examples/demo ../models/ [/path/to/a/image]`
 本项目在Fedora 29，CentOS 7.6, Windows 10 64位家庭版，Ubuntu 18.04 mate for ARM平台测试通过
 
 
-# 参考和引用
+## 参考和引用
 - [Alibaba MNN](https://github.com/alibaba/MNN)
 - [License-Plate-Detect-Recognition-via-Deep-Neural-Networks-accuracy-up-to-99.9](https://github.com/zhubenfu/License-Plate-Detect-Recognition-via-Deep-Neural-Networks-accuracy-up-to-99.9)
 - [Caffe_OCR](https://github.com/senlinuc/caffe_ocr)
