@@ -16,8 +16,8 @@ Light-LPR은 임베디드 장치, 휴대폰 및 x86 플랫폼에서 실행할 �
 비고： Y 지원，- 지원되지 않거나 사용할 수 없음，E 평가 단계에서
 
 ## 1080P 이미지 인식 벤치 마크 성능
-|       | CPU     |  Memory  | average cost of community version (ms)   |  average cost of Commercial version(ms) |
-| :-------- | :-----    | :----:  | ----:  | ----:  |
+|           | CPU        |  Memory  | average cost of community version (ms)   |  average cost of Commercial version(ms) |
+| :-------- | :-----     | :----:  | ----:  | ----:  |
 | X86  | i5-8265   |  8G    | 451 | < 50  |
 | ARM  | A53       | 1G    | 1532| < 160 |
 | Huwei P20 pro| ... | 4G | - |  < 100 |

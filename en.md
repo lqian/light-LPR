@@ -3,7 +3,9 @@ Light-LPR is an open source project aimed at license plate recognition that can 
  [ About ](README.md) | [ English ](en.md) | [ 中文 ](cn-zh.md) | [ 中文繁体 ](cn-tw.md)| [ 한국어 ](kr.md) 
 
 ## Change Log 
-- 2020-04 full Support for 2019 new license plates of the Republic of Korea
+- 2020-08 release LightLPR engine 3.0 at Hisilcon 3516CV500 and 3516DV300
+- 2020-06 release LightLPR engine 3.0
+- 2020-04 full Support for 2019 new license plates of the Republic of South Korea
 - 2020-04 LightLPR apk support device which run android 5, android 6, android 7, android 8, android 9, android 10 
 - 2020-01 support South Korean License Plate Recognization
 - 2019-12 Support Taiwan license plate recognition
@@ -18,8 +20,8 @@ Light-LPR is an open source project aimed at license plate recognition that can 
 | X86  | i5-8265   |  8G    | 451 | < 50  |
 | ARM  | A53       | 1G    | 1532| < 160 |
 | Huwei P20 pro| ... | 4G | - |  < 100 |
-| 3519A100 | ... |  | - |  < 16 (NPU support) |
-| 3516CV500 | ... |  | - | < 45 (NPU support) |
+| 3516DV300 | ... |  | - |  < 45 (NPU support) |
+| 3516CV500 | ... |  | - | < 85 (NPU support) |
 
 ## License
 LGPL
