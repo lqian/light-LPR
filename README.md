@@ -20,7 +20,8 @@ Light-LPR(MLPR)은 임베디드 장치, 휴대폰 및 x86 플랫폼에서 실행
 - हम लाइसेंस प्लेट मान्यता विकसित करने के लिए आपके साथ काम करने के लिए तत्पर हैं
 
 ## Change Log 
-- 2020-10 识别模组管理工具Light LPR Tool发布，演示视频链接: https://pan.baidu.com/s/16D2S6StjKsv879nMFSZAmQ 提取码: ewqb , 演示视频2：链接: https://pan.baidu.com/s/1wV_agW71bthTpzhxKLf6cA 提取码: cun3 
+- 2020-11 light-lpr-api 1.2.0发布，支持c/c++, c#, Java, android.
+- 2020-10 识别模组管理工具Light LPR Tool发布，[演示视频链接](https://pan.baidu.com/s/16D2S6StjKsv879nMFSZAmQ) 提取码: ewqb , [演示视频2](https://pan.baidu.com/s/1wV_agW71bthTpzhxKLf6cA) 提取码: cun3 
 - 2020-08 第三代硬件识别引擎
 - 2020-06 第三代识别引擎
 - 2020-04 2019 스타일 번호판, 1973 스타일 번호판, 1996 스타일 번호판에 대한 완벽한 지원
