@@ -3,6 +3,8 @@ Light-LPR is an open source project aimed at license plate recognition that can 
  [ About ](README.md) | [ English ](en.md) | [ 中文 ](cn-zh.md) | [ 中文繁体 ](cn-tw.md)| [ 한국어 ](kr.md) 
 
 ## Change Log 
+- 2020-11 replease light-lpr-api 1.2.0 for development with LightLPR device, support c/c++, c#, Java, Android programming.
+- 2020-10 release light-lpr-tool for LightLPR device management, and test on road. [test video1](https://pan.baidu.com/s/16D2S6StjKsv879nMFSZAmQ) code: ewqb , [test video1](https://pan.baidu.com/s/1wV_agW71bthTpzhxKLf6cA) code: cun3
 - 2020-08 release LightLPR engine 3.0 at Hisilcon 3516CV500 and 3516DV300
 - 2020-06 release LightLPR engine 3.0
 - 2020-04 full Support for 2019 new license plates of the Republic of South Korea
