@@ -1,4 +1,3 @@
-
 Light-LPR or named MLPR is an open source project aimed at license plate recognition that can run on embedded devices, mobile phones, and x86 platforms. It aims to support license plate recognition in various scenarios. The accuracy rate of license plate character recognition exceeds 99.95%, and the comprehensive recognition accuracy rate exceeds 99%. The project supports multi-lingual and multi-country license plates.
 
  [ English ](en.md) | [ 中文 ](cn-zh.md) | [ 中文繁体 ](cn-tw.md)| [ 한국어 ](kr.md) 
@@ -32,6 +31,7 @@ Light-LPR(MLPR)은 임베디드 장치, 휴대폰 및 x86 플랫폼에서 실행
 - 2019-08 开源支持黄牌识别的模型和车牌颜色识别模型
 - 2019-07 开源支持中华人民共和国境内蓝色车牌识别模型
 
+
 ## License plate recognization benchmark for 1080P image
 
 |       | CPU     |  Memory  | average cost of community version (ms)   |  average cost of Commercial version(ms) |
@@ -39,7 +39,7 @@ Light-LPR(MLPR)은 임베디드 장치, 휴대폰 및 x86 플랫폼에서 실행
 | X86  | i5-8265   |  8G    | 451 | < 50  |
 | ARM  | A53       | 1G    | 1532| < 160 |
 | Huwei P20 pro| ... | 4G | - |  < 100 |
-| 3516DV300 | A79 | 256M | - |  < 45 (NPU support) |
+| 3516DV300 | A73 | 256M | - |  < 45 (NPU support) |
 | 3516CV500 | A79 | 256M | - | < 85 (NPU support) |
 
 ## API supported programming Language
