@@ -1,3 +1,12 @@
+<pre>
+ __       __    _______  __    __  .___________.        __      .______   .______      
+|  |     |  |  /  _____||  |  |  | |           |       |  |     |   _  \  |   _  \     
+|  |     |  | |  |  __  |  |__|  | `---|  |----`______ |  |     |  |_)  | |  |_)  |    
+|  |     |  | |  | |_ | |   __   |     |  |    |______||  |     |   ___/  |      /     
+|  `----.|  | |  |__| | |  |  |  |     |  |            |  `----.|  |      |  |\  \----.
+|_______||__|  \______| |__|  |__|     |__|            |_______|| _|      | _| `._____|
+</pre>                                                                                       
+
 Light-LPR or named MLPR is an open source project aimed at license plate recognition that can run on embedded devices, mobile phones, and x86 platforms. It aims to support license plate recognition in various scenarios. The accuracy rate of license plate character recognition exceeds 99.95%, and the comprehensive recognition accuracy rate exceeds 99%. The project supports multi-lingual and multi-country license plates.
 
  [ English ](en.md) | [ 中文 ](cn-zh.md) | [ 中文繁体 ](cn-tw.md)| [ 한국어 ](kr.md) 
@@ -19,6 +28,9 @@ Light-LPR(MLPR)은 임베디드 장치, 휴대폰 및 x86 플랫폼에서 실행
 - हम लाइसेंस प्लेट मान्यता विकसित करने के लिए आपके साथ काम करने के लिए तत्पर हैं
 
 ## Change Log 
+- 2021-04 LLPR-CN-330E发布支持车载巡检车牌识别; light-lpr-api 1.4.5发布，开放设备管理接口
+- 2021-02 第四代识别引擎light-lpr-pro 4.0发布，全力支持中国大陆地区双行车牌的识别，改善对小尺寸车牌识别的效果
+- 2021-01 硬件识别引擎支持FTP上传，HTTP上传，[light-lpr-httpdemo-0.0.1](https://github.com/lqian/light-lpr-httpdemo)发布
 - 2020-11 light-lpr-api 1.2.0发布，支持c/c++, c#, Java, android.
 - 2020-10 识别模组管理工具Light LPR Tool发布，[演示视频链接](https://pan.baidu.com/s/16D2S6StjKsv879nMFSZAmQ) 提取码: ewqb , [演示视频2](https://pan.baidu.com/s/1wV_agW71bthTpzhxKLf6cA) 提取码: cun3 
 - 2020-08 第三代硬件识别引擎
@@ -39,8 +51,8 @@ Light-LPR(MLPR)은 임베디드 장치, 휴대폰 및 x86 플랫폼에서 실행
 | X86  | i5-8265   |  8G    | 451 | < 50  |
 | ARM  | A53       | 1G    | 1532| < 160 |
 | Huwei P20 pro| ... | 4G | - |  < 100 |
-| 3516DV300 | A73 | 256M | - |  < 45 (NPU support) |
-| 3516CV500 | A79 | 256M | - | < 85 (NPU support) |
+| LLPR-320E | A73 | 256M | - |  < 45 (NPU support) |
+| LLPR-310E | A79 | 256M | - | < 85 (NPU support) |
 
 ## API supported programming Language
 - C/C++
