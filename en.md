@@ -3,6 +3,7 @@ Light-LPR is an open source project aimed at license plate recognition that can 
  [ About ](README.md) | [ English ](en.md) | [ 中文 ](cn-zh.md) | [ 中文繁体 ](cn-tw.md)| [ 한국어 ](kr.md) 
 
 ## Change Log 
+- 2021-06 LLPR-313E is released, supporting scene recognition of charging piles and underground garages, and can recognize up to 3 license plates at the same time. Support license plate recognition in China, Taiwan and South Korea
 - 2021-04 LLPR-CN-330E is released to support vehicle-mounted inspection license plate recognition; light-lpr-api 1.4.5 is released, and the device management interface is opened
 - 2021-02 The fourth-generation recognition engine light-lpr-pro 4.0 is released, which fully supports the recognition of dual-line license plates in mainland China and improves the recognition of small-size license plates
 - 2021-01 hardware recognition engine supports FTP upload and HTTP upload, [light-lpr-httpdemo-0.0.1](https://github.com/lqian/light-lpr-httpdemo) is released.
