@@ -7,7 +7,7 @@
 |_______||__|  \______| |__|  |__|     |__|            |_______|| _|      | _| `._____|
 </pre>                                                                                       
 
-Light-LPR or named MLPR is an open source project aimed at license plate recognition that can run on embedded devices, mobile phones, and x86 platforms. It aims to support license plate recognition in various scenarios. The accuracy rate of license plate character recognition exceeds 99.95%, and the comprehensive recognition accuracy rate exceeds 99%. The project supports multi-lingual and multi-country license plates.
+Light-LPR or named MLPR is an open source project aimed at license plate recognition that can run on embedded devices, mobile phones, and x86 platforms. It aims to support license plate recognition in various scenarios. The accuracy rate of license plate character recognition exceeds 99.95%, and the comprehensive recognition accuracy rate exceeds 99%. The project supports multi-lingual and multi-country license plates. For all test video please visit [Light-LPR official video resources](https://space.bilibili.com/1190293246).
 
  [ English ](en.md) | [ 中文 ](cn-zh.md) | [ 中文繁体 ](cn-tw.md)| [ 한국어 ](kr.md) 
 
@@ -27,7 +27,9 @@ Light-LPR(MLPR)은 임베디드 장치, 휴대폰 및 x86 플랫폼에서 실행
 - เราหวังว่าจะทำงานร่วมกับคุณเพื่อพัฒนาการจดจำป้ายทะเบียน
 - हम लाइसेंस प्लेट मान्यता विकसित करने के लिए आपके साथ काम करने के लिए तत्पर हैं
 
+
 ## Change Log 
+- 2021-11 LLPR-400-CN中国大陆系列模组登录[AI市场](https://aim.baidu.com/product/31f56627-06c4-413d-bfdb-b6da7ebedb2c)，[LLPR淘宝小铺](https://lightlpr.taobao.com/)上线
 - 2021-09 LLPR-400E系列发布，支持路侧视频桩车牌识别场景
 - 2021-06 LLPR-313E发布，支持充电桩、地下车库场景识别，最多可同时识别3个车牌。支持中国、台湾和南韩车牌识别
 - 2021-04 LLPR-CN-330E发布支持车载巡检车牌识别; light-lpr-api 1.4.5发布，开放设备管理接口
