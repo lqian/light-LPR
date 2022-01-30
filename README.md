@@ -29,7 +29,8 @@ Light-LPR(MLPR)은 임베디드 장치, 휴대폰 및 x86 플랫폼에서 실행
 
 
 ## Change Log 
-- 2021-11 LLPR-400-CN中国大陆系列模组登录[AI市场](https://aim.baidu.com/product/31f56627-06c4-413d-bfdb-b6da7ebedb2c)，[LLPR淘宝小铺](https://lightlpr.taobao.com/)上线
+- 2022-01 LLPR-E5系列发布，效能翻倍，独有LBOX识别，化繁为简，50毫秒开闸，领先一步。
+- 2021-11 LLPR-400-CN中国大陆系列模组[LLPR淘宝小铺](https://lightlpr.taobao.com/)上线
 - 2021-09 LLPR-400E系列发布，支持路侧视频桩车牌识别场景
 - 2021-06 LLPR-313E发布，支持充电桩、地下车库场景识别，最多可同时识别3个车牌。支持中国、台湾和南韩车牌识别
 - 2021-04 LLPR-CN-330E发布支持车载巡检车牌识别; light-lpr-api 1.4.5发布，开放设备管理接口
@@ -69,6 +70,7 @@ LGPL
 
 ## Please refer to the project file for the installation method [install_en.md](install_en.md)
 ## Others
+- official site: www.lightlpr.com
 - Email： link.com@yeah.net, Phone: +86 18010870244,  Skype: +86 18010870244
 - For technical communication, data exchanges and donations, please contact the author or join QQ group, light-LPR group number: 813505078, Image Processing Analysis Machine Vision gropu number, 109128646.
 - ![](light-LPR.png) ![](109128646.png) 
