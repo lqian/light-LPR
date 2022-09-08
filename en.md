@@ -3,6 +3,10 @@ Light-LPR is an open source project aimed at license plate recognition that can 
  [ About ](README.md) | [ English ](en.md) | [ 中文 ](cn-zh.md) | [ 中文繁体 ](cn-tw.md)| [ 한국어 ](kr.md) 
 
 ## Change Log 
+- 2022-08 release [LLPR cloud](cloud.lightlpr.com)，support remote maintenance and update batch。
+- 2022-06 LLPR product supports to play 1080P video via 4G. support WEB management tool。
+- 2022-05 LLPR-P4 parking spot management module, support 2 spot and 2 locks。
+- 2022-03 LLPR-Z1 is released for roadside parking management，support 2-max roadside parking spot.
 - 2022-01 LLPR-E5 series released, LBOX-tech recognize license plate number within 50 ms
 - 2021-11 LLPR-400-CN Chinese mainlaind serial of hardware modules [Light-LPR taobao shop](https://lightlpr.taobao.com/) is online. 
 - 2021-09 LLPR-400E is released, supports road-side video pile license plate recognition scenes.
